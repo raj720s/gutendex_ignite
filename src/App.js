@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import Home from "./Pages/Home";
+import Category from "./Pages/Category";
+import Error from "./Pages/Error";
+import Footer from "./components/Footer";
+import "./App.scss";
+import Genre from "./Pages/Genre";
+import BookPage from "./Pages/BookPage";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/category/:cat" element={<Category />} />
+
+            <Route path="/genre/:cat/search/:keyword" element={<Genre />} />
+            <Route path="/genre/:cat" element={<Genre />} />
+            <Route path="/genre/:cat/search/:keyword" element={<Genre />} />
+            <Route path="/book/:id" element={<BookPage />} />
+
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+      <Footer />
     </div>
   );
 }
